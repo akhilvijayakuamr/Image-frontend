@@ -1,0 +1,50 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family:sans-serif;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e)
+}
+
+.button-container {
+    text-align: center;
+}
+
+.verify-button {
+    padding: 12px 24px;
+    width: 300px;
+    height: 100px;
+    background-color: #4CAF50; 
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.verify-button:hover {
+    background-color: #45a049; 
+    transform: scale(1.05);
+}
+
+
+.verify-button:focus {
+    outline: none;
+}
+
+.verify-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
