@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 
 const AllImage: React.FC = () => {
   const [images, setImages] = useState<Image[]>([]);
+  const [reload, setReload] = useState<boolean>(false)
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const swapIdRef = useRef<ImageUpdate>({
@@ -84,6 +85,7 @@ const AllImage: React.FC = () => {
         toast.success(response.message, {
           position: 'top-right',
         });
+        setReload(!reload)
       } else {
         toast.error(response.message, {
           position: 'top-right',
@@ -110,7 +112,7 @@ const AllImage: React.FC = () => {
 
   useEffect(() => {
     handleGet();
-  }, []);
+  }, [reload]);
 
   // Handle drag and drop
   const handleDragEnd = (result: any) => {
