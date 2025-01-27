@@ -158,7 +158,7 @@ const AllImage: React.FC = () => {
                     >
                       <img
                         className="card-img"
-                        src={`http://127.0.0.1:8000${post.image}`}
+                        src={`https://image-backend-7zpg.onrender.com${post.image}`}
                         alt={post.title || `Image ${index + 1}`}
                       />
                       <div className="card-content">
