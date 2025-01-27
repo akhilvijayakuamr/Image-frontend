@@ -19,9 +19,9 @@ const AllImage: React.FC = () => {
   })
 
   const updateRef = useRef<SpecificUpdate>({
-    postId:'',
-    postTitle:'',
-    image:null
+    postId: '',
+    postTitle: '',
+    image: null
   })
 
   const deleteRef = useRef<string>('')
@@ -76,7 +76,7 @@ const AllImage: React.FC = () => {
 
   // Delete image
 
-  const handleDelete = async (id:string) => {
+  const handleDelete = async (id: string) => {
     deleteRef.current = id
     try {
       const response = await dispatch(imageDeleteAsync(deleteRef.current) as any);
@@ -102,10 +102,10 @@ const AllImage: React.FC = () => {
   // Updata specific image
 
 
-  const handleUniqueUpdate = (id:string, title:string) =>{
+  const handleUniqueUpdate = (id: string, title: string) => {
     updateRef.current.postId = id
     updateRef.current.postTitle = title
-    navigate('/update', {state:updateRef.current})
+    navigate('/update', { state: updateRef.current })
   }
 
 
@@ -149,33 +149,41 @@ const AllImage: React.FC = () => {
               {...provided.droppableProps}
               ref={provided.innerRef}
             >
-              {images.map((post, index) => (
-                <Draggable key={post.id} draggableId={String(post.id)} index={index}>
-                  {(provided) => (
-                    <div
-                      className="card-item"
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                    >
-                      <img
-                        className="card-img"
-                        src={`https://image-backend-7zpg.onrender.com${post.image}`}
-                        alt={post.title || `Image ${index + 1}`}
-                      />
-                      <div className="card-content">
-                        <h3 className="card-heading">{post.title || `Image ${index + 1}`}</h3>
-                        <a  className="card-link" onClick={()=>handleDelete(String(post.id))}>
-                          Delete
-                        </a>
-                        <a className="card-link" style={{ background: "green" }} onClick={()=>handleUniqueUpdate(String(post.id), post.title)}>
-                          Update
-                        </a>
+              {Array.isArray(images) && images.length > 0 ? (
+                images.map((post, index) => (
+                  <Draggable key={post.id} draggableId={String(post.id)} index={index}>
+                    {(provided) => (
+                      <div
+                        className="card-item"
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <img
+                          className="card-img"
+                          src={`https://image-backend-7zpg.onrender.com${post.image}`}
+                          alt={post.title || `Image ${index + 1}`}
+                        />
+                        <div className="card-content">
+                          <h3 className="card-heading">{post.title || `Image ${index + 1}`}</h3>
+                          <a className="card-link" onClick={() => handleDelete(String(post.id))}>
+                            Delete
+                          </a>
+                          <a
+                            className="card-link"
+                            style={{ background: 'green' }}
+                            onClick={() => handleUniqueUpdate(String(post.id), post.title)}
+                          >
+                            Update
+                          </a>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </Draggable>
-              ))}
+                    )}
+                  </Draggable>
+                ))
+              ) : (
+                <p>No images available</p>
+              )}
               {provided.placeholder}
             </div>
           )}
