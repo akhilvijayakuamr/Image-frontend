@@ -4,7 +4,7 @@ import { refreshTokenApi } from "../Api/api";
 import { setAccessToken } from "../Redux/slice/UserSlice";
 
 const apiClient = axios.create({
-    baseURL: 'http://127.0.0.1:8000',
+    baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 
