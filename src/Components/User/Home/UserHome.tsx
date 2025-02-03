@@ -135,7 +135,7 @@ const UserHome: React.FC = () => {
     );
   };
 
-
+  // Create post 
 
   const handleCreate = async (e:  React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
